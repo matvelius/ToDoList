@@ -10,6 +10,8 @@ import UIKit
 
 class ToDoViewController: UITableViewController {
     
+    var todo: ToDo?
+    
     @IBOutlet weak var titleTextField: UITextField!
     
     @IBOutlet weak var isCompleteButton: UIButton!
@@ -107,6 +109,21 @@ class ToDoViewController: UITableViewController {
             break
             
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        super.prepare(for: segue, sender: sender)
+        
+        guard segue.identifier == "saveUnwind" else { return }
+        
+        let title = titleTextField.text!
+        let isComplete = isCompleteButton.isSelected
+        let dueDate = dueDatePickerView.date
+        let notes = notesTextView.text
+        
+        todo = ToDo(title: title, isComplete: isComplete, dueDate: dueDate, notes: notes)
+        
     }
     
 }
