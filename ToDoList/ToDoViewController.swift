@@ -42,15 +42,71 @@ class ToDoViewController: UITableViewController {
         
     }
     
+    @IBAction func datePickerChanged(_ sender: UIDatePicker) {
+        
+        updateDueDateLabel(date: dueDatePickerView.date)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dueDatePickerView.date = Date().addingTimeInterval(24*60*60)
+        updateDueDateLabel(date: dueDatePickerView.date)
         updateSaveButtonState()
+    }
+    
+    var isPickerHidden = true
+    
+    func updateDueDateLabel(date: Date) {
+        dueDateLabel.text = ToDo.dueDateFormatter.string(from: date)
     }
     
     func updateSaveButtonState() {
         let text = titleTextField.text ?? ""
         saveButton.isEnabled = !text.isEmpty
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let normalCellHeight = CGFloat(44)
+        let largeCellHeight = CGFloat(200)
+        
+        print(isPickerHidden)
+        
+        switch (indexPath) {
+            
+        case [1,0]: // due date cell
+            return isPickerHidden ? normalCellHeight : largeCellHeight
+            
+        case [2, 0]: // notes cell
+            return largeCellHeight
+            
+        default:
+            return normalCellHeight
+            
+        }
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        print(isPickerHidden)
+        
+        switch (indexPath) {
+            
+        case [1,0]:
+            isPickerHidden = !isPickerHidden
+            
+            dueDateLabel.textColor = isPickerHidden ? .black : tableView.tintColor
+            
+            // animation
+            tableView.beginUpdates()
+            tableView.endUpdates()
+            
+        default:
+            break
+            
+        }
     }
     
 }

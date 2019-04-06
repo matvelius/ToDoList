@@ -106,35 +106,38 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHO-5t-qpd">
-                                                    <rect key="frame" x="36" y="22" width="72" height="21"/>
+                                                    <rect key="frame" x="20" y="14" width="72" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3/1/19, 10:00 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFl-Jl-USX">
-                                                    <rect key="frame" x="250" y="22" width="128" height="21"/>
+                                                    <rect key="frame" x="266" y="14" width="128" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="0ah-ab-4So">
-                                                    <rect key="frame" x="0.0" y="43" width="414" height="165"/>
+                                                    <rect key="frame" x="0.0" y="35" width="414" height="165"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="165" id="Glg-nL-Fpg"/>
                                                     </constraints>
                                                     <date key="date" timeIntervalSinceReferenceDate="576255013.77230096">
                                                         <!--2019-04-06 14:50:13 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="datePickerChanged:" destination="p3f-hO-6OR" eventType="primaryActionTriggered" id="6TN-HI-PiK"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="0ah-ab-4So" firstAttribute="leading" secondItem="Z6H-p0-ojA" secondAttribute="leading" id="F6D-nP-s8m"/>
                                                 <constraint firstAttribute="trailing" secondItem="0ah-ab-4So" secondAttribute="trailing" id="H56-g6-xTJ"/>
-                                                <constraint firstItem="bHO-5t-qpd" firstAttribute="leading" secondItem="Z6H-p0-ojA" secondAttribute="leadingMargin" constant="16" id="OaV-FE-9v3"/>
+                                                <constraint firstItem="bHO-5t-qpd" firstAttribute="leading" secondItem="Z6H-p0-ojA" secondAttribute="leadingMargin" id="OaV-FE-9v3"/>
                                                 <constraint firstItem="0ah-ab-4So" firstAttribute="top" secondItem="KFl-Jl-USX" secondAttribute="bottom" id="Wvu-pb-NOo"/>
-                                                <constraint firstItem="KFl-Jl-USX" firstAttribute="top" secondItem="Z6H-p0-ojA" secondAttribute="topMargin" constant="11" id="dze-J3-Hxs"/>
-                                                <constraint firstItem="KFl-Jl-USX" firstAttribute="trailing" secondItem="Z6H-p0-ojA" secondAttribute="trailingMargin" constant="-16" id="fgw-NU-nte"/>
-                                                <constraint firstItem="bHO-5t-qpd" firstAttribute="top" secondItem="Z6H-p0-ojA" secondAttribute="topMargin" constant="11" id="o3Y-IS-UmA"/>
+                                                <constraint firstItem="KFl-Jl-USX" firstAttribute="top" secondItem="Z6H-p0-ojA" secondAttribute="topMargin" constant="3" id="dze-J3-Hxs"/>
+                                                <constraint firstItem="KFl-Jl-USX" firstAttribute="trailing" secondItem="Z6H-p0-ojA" secondAttribute="trailingMargin" id="fgw-NU-nte"/>
+                                                <constraint firstItem="bHO-5t-qpd" firstAttribute="top" secondItem="Z6H-p0-ojA" secondAttribute="topMargin" constant="3" id="o3Y-IS-UmA"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

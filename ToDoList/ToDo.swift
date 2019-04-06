@@ -20,7 +20,6 @@ struct ToDo {
         
     }
     
-    
     static func loadSampleToDos() -> [ToDo]? {
         
         let todo1 = ToDo(title: "ToDo 1", isComplete: false, dueDate: Date(), notes: "Notes 1")
@@ -30,4 +29,13 @@ struct ToDo {
         return [todo1, todo2, todo3]
         
     }
+    
+    static let dueDateFormatter: DateFormatter = {
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        return formatter
+        
+    }()
 }
