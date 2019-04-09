@@ -45,12 +45,14 @@ class ToDoTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoCellIdentifier") else {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoCellIdentifier") as? ToDoCell else {
             fatalError("Could not dequeue a cell")
         }
         
         let todo = todos[indexPath.row]
-        cell.textLabel?.text = todo.title
+        cell.titleLabel?.text = todo.title
+        cell.isCompleteButton.isSelected = todo.isComplete
 
         return cell
     }
@@ -82,10 +84,32 @@ class ToDoTableViewController: UITableViewController {
         
         if let todo = sourceViewController.todo {
             
-            let newIndexPath = IndexPath(row: todos.count, section: 0)
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                
+                todos[selectedIndexPath.row] = todo
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+                
+            } else {
             
-            todos.append(todo)
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
+                let newIndexPath = IndexPath(row: todos.count, section: 0)
+                todos.append(todo)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+                
+            }
+            
+        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showDetails" {
+            
+            let todoViewController = segue.destination as! ToDoViewController
+            let indexPath = tableView.indexPathForSelectedRow!
+            let selectedTodo = todos[indexPath.row]
+            todoViewController.todo = selectedTodo
+            
         }
         
     }
