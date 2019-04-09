@@ -8,7 +8,21 @@
 
 import UIKit
 
-class ToDoTableViewController: UITableViewController {
+class ToDoTableViewController: UITableViewController, ToDoCellDelegate {
+    
+    func checkmarkTapped(sender: ToDoCell) {
+        
+        if let indexPath = tableView.indexPath(for: sender) {
+            
+            var todo = todos[indexPath.row]
+            todo.isComplete = !todo.isComplete
+            todos[indexPath.row] = todo
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+            
+        }
+        
+    }
+    
     
     var todos = [ToDo]()
 
@@ -53,6 +67,8 @@ class ToDoTableViewController: UITableViewController {
         let todo = todos[indexPath.row]
         cell.titleLabel?.text = todo.title
         cell.isCompleteButton.isSelected = todo.isComplete
+        
+        cell.delegate = self
 
         return cell
     }
