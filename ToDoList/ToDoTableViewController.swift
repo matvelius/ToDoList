@@ -18,6 +18,7 @@ class ToDoTableViewController: UITableViewController, ToDoCellDelegate {
             todo.isComplete = !todo.isComplete
             todos[indexPath.row] = todo
             tableView.reloadRows(at: [indexPath], with: .automatic)
+            ToDo.saveToDos(todos)
             
         }
         
@@ -27,6 +28,7 @@ class ToDoTableViewController: UITableViewController, ToDoCellDelegate {
     var todos = [ToDo]()
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         if let savedToDos = ToDo.loadToDos() {
@@ -86,6 +88,7 @@ class ToDoTableViewController: UITableViewController, ToDoCellDelegate {
         if editingStyle == .delete {
             todos.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            ToDo.saveToDos(todos)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
@@ -112,6 +115,8 @@ class ToDoTableViewController: UITableViewController, ToDoCellDelegate {
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
                 
             }
+            
+            ToDo.saveToDos(todos)
             
         }
         
